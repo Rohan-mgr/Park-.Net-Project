@@ -17,7 +17,8 @@ using System.Web.Mvc;
 
 namespace DMS.Controllers
 {
-    [CustomAuthentication]
+    //[CustomAuthentication]
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private MainEntities db;
