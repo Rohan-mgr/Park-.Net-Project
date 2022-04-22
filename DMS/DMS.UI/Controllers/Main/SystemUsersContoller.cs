@@ -3,7 +3,6 @@ using DMS.DAL;
 using DMS.DAL.DatabaseContext;
 using DMS.DAL.EntityModels;
 using DMS.DAL.Helpers;
-using DMS.DAL.Interface;
 using DMS.DAL.Interfaces;
 using DMS.DAL.Repositories.GeneralRepo.Implementation;
 using DMS.DAL.Repositories.GeneralRepo.Interfaces;
@@ -35,7 +34,6 @@ namespace DMS.UI.Controllers
     public class SystemUsersController : AccountController
     {
         private IUserRoleRepo _UserManagement;
-        private IBranchesRepo _BranchesRepo;
         private IEmployeeRepo _EmployeeRepo;
         //protected ApplicationUserManager _userManager;
         protected IUserRoleServices _UserRoleServices;
@@ -43,40 +41,29 @@ namespace DMS.UI.Controllers
         protected IUserRepo _UserRepo;
         protected EmailHelperService _EmailHelperService;
         protected IUserCodesRepo _UserCodesRepo;
-        IDesignationRepo _DesignationRepo;
-        IDepartmentRepo _DepartmentRepo;
-        ILevelsRepo _LevelsRepo;
 
         public SystemUsersController(
             MainEntities MainEntities,
             ApplicationUserManager userManager,
             ApplicationSignInManager signInManager,
             IUserRoleServices userRole,
-            IBranchesRepo BranchesRepo,
             IUserRepo User05Repo,
             IEmployeeRepo EmployeeRepo,
             EmailHelperService EmailHelperService,
-            IUserCodesRepo UserCodesRepo,
-            IDesignationRepo DesignationRepo,
-            IDepartmentRepo DepartmentRepo,
-            ILevelsRepo LevelsRepo
+            IUserCodesRepo UserCodesRepo
             ) : base(MainEntities, userManager, signInManager, userRole, EmailHelperService,UserCodesRepo,EmployeeRepo, User05Repo)
         {
             _UserManagement = new UserRoleRepo();
-            _BranchesRepo = BranchesRepo;
             //_userManager = userManager;
             _UserRepo = User05Repo;
             _EmployeeRepo = EmployeeRepo;
             _EmailHelperService = EmailHelperService;
             _UserCodesRepo = UserCodesRepo;
-            _DesignationRepo = DesignationRepo;
-            _DepartmentRepo = DepartmentRepo;
-            _LevelsRepo = LevelsRepo;
         }
         public ActionResult Index()
         {
             IEnumerable<ApplicationUserVM> UserList = _userRole.GetAllUserList().ToList();//.Where(x => x.usr05deleted == false).ToList();
-            IEnumerable<usr05users> User05List = _UserRepo.GetList().Include(x => x.bra01branches).Include(x => x.emp01employee).ToList();
+            IEnumerable<usr05users> User05List = _UserRepo.GetList().Include(x => x.emp01employee).ToList();
 
             IList<UserModule> UserModelList = (from ApplicationUserVM in UserList
                                                join usr05users in User05List
@@ -92,7 +79,6 @@ namespace DMS.UI.Controllers
         {
             base.InitCommon(Model);
             //code for dropdown of agent
-            ViewBag.BranchId = new SelectList(_dbMainEntities.bra01branches.Where(x => x.bra01deleted == false).ToList(), "bra01uin", "DisplayField", Model.BranchId);
             ViewBag.EmployeeId = new SelectList(_dbMainEntities.emp01employee.Where(x => x.emp01deleted == false && x.usr05users.Count == 0).ToList(), "emp01uin", "DisplayField", Model.EmployeeId);
             ViewBag.ForEditEmployeeId = new SelectList(_dbMainEntities.emp01employee.Where(x => x.emp01deleted == false).ToList(), "emp01uin", "DisplayField", Model.EmployeeId);
         }
@@ -194,21 +180,6 @@ namespace DMS.UI.Controllers
                 {
                     throw new Exception("Permission Denied!!!. Cannot escalate user with higher permission.");
                 }
-                var dep = _DepartmentRepo.GetList();
-                if(dep.Count()==0)
-                {
-                    throw new Exception("Please Setup at least one Department");
-                }
-                var des = _DesignationRepo.GetList();
-                if(des.Count()==0)
-                {
-                    throw new Exception("Please Setup at least one Designation");
-                }
-                var lvl = _LevelsRepo.GetList();
-                if(lvl.Count()==0)
-                {
-                    throw new Exception("Please Setup at least one Level");
-                }
                 emp01employee emp01employee = new emp01employee();
                 emp01employee.emp01created_by = _ActiveSession.UserId;
                 emp01employee.emp01created_date_eng = _ActiveSession.SysDateEng;
@@ -218,13 +189,9 @@ namespace DMS.UI.Controllers
                 emp01employee.emp01join_date_nep = _ActiveSession.SysDateNep;
                 emp01employee.emp01updated_date_nep = _ActiveSession.SysDateNep;
                 emp01employee.emp01update_date_eng = _ActiveSession.SysDateEng;
-                emp01employee.emp01bra01uin = Data.BranchId;
                 emp01employee.emp01code = "E00" + Data.EmployeeName.Length;
-                emp01employee.emp01dep01uin = dep.FirstOrDefault().dep01uin;
-                emp01employee.emp01des01uin = des.FirstOrDefault().des01uin;
                 emp01employee.emp01join_date_eng = _ActiveSession.SysDateEng;
                 emp01employee.emp01join_date_nep = _ActiveSession.SysDateNep;
-                emp01employee.emp01lvl01uin = lvl.FirstOrDefault().lvl01uin;
                 emp01employee.emp01mobile = "1111111111";
                 emp01employee.emp01name = Data.EmployeeName;
                 emp01employee.emp01status = Data.status;
@@ -334,7 +301,6 @@ namespace DMS.UI.Controllers
             {
                 usr05users User = new usr05users();
 
-                User.usr05bra01uin = userData.BranchId;
                 User.usr05userId = RegUser.Id;
                 User.usr05status = true;
                 User.usr05deleted = false;
@@ -363,10 +329,7 @@ namespace DMS.UI.Controllers
         public async Task<ActionResult> Edit(string id)
         {
             RegisterViewModel RegisterViewModel = new RegisterViewModel();
-            ViewBag.BranchId = new SelectList(_BranchesRepo.GetList().AsEnumerable(), "BindField", "DisplayField");
-
             RegisterEditModel data = new RegisterEditModel();
-            ViewBag.BranchId = new SelectList(_BranchesRepo.GetList().AsEnumerable(), "BindField", "DisplayField");
             //ViewBag.EmployeeId = new SelectList(_EmployeeRepo.GetListByStatus().AsEnumerable().ToList(), "BindField", "DisplayField");
 
             usr05users user = _dbMainEntities.usr05users.Where(s => s.usr05userId == id).FirstOrDefault();
@@ -397,7 +360,6 @@ namespace DMS.UI.Controllers
 
                 data = new RegisterEditModel()
                 {
-                    BranchId = user == null ? 0 : user.bra01branches.bra01uin,
                     Email = xyz.Email,
                     RegRoles = roleName.ToArray(),
                     EmployeeId = user?.emp01employee == null ? 0 : user.emp01employee.emp01uin,
@@ -478,7 +440,6 @@ namespace DMS.UI.Controllers
 
                 if (Data != null)
                 {
-                    Data.usr05bra01uin = model.BranchId.Value;
                     Data.usr05can_view_all_branch = model.usr05can_view_all_branch;
                     Data.usr05status = model.status;
                     Data.usr05deleted = false;
@@ -498,7 +459,6 @@ namespace DMS.UI.Controllers
                         {
                             usr05emp01uin = model.EmployeeId,
                             usr05userId = UserData.Id,
-                            usr05bra01uin = model.BranchId.Value,
                             usr05created_by = _ActiveSession.UserId,
                             usr05created_date = _ActiveSession.SysDateEng,
                             usr05deleted = false,
@@ -539,10 +499,8 @@ namespace DMS.UI.Controllers
         {
 
             RegisterViewModel RegisterViewModel = new RegisterViewModel();
-            ViewBag.BranchId = new SelectList(_BranchesRepo.GetList().AsEnumerable(), "BindField", "DisplayField");
             // ViewBag.EmployeeId = new SelectList(_EmployeeRepo.GetList().AsEnumerable().ToList(), "BindField", "DisplayField");
             RegisterEditModel data = new RegisterEditModel();
-            ViewBag.BranchId = new SelectList(_BranchesRepo.GetList().AsEnumerable(), "BindField", "DisplayField");
             // ViewBag.EmployeeId = new SelectList(_EmployeeRepo.GetList().AsEnumerable().ToList(), "BindField", "DisplayField");
             usr05users user = _dbMainEntities.usr05users.Where(s => s.usr05userId == id).FirstOrDefault();
             var roleStore = new RoleStore<IdentityRole>(_dbIdentityEntities);
@@ -571,7 +529,6 @@ namespace DMS.UI.Controllers
 
                 data = new RegisterEditModel()
                 {
-                    BranchId = user == null ? 0 : user.bra01branches.bra01uin,
                     Email = xyz.Email,
                     RegRoles = roleName.ToArray(),
 
@@ -649,8 +606,6 @@ namespace DMS.UI.Controllers
         public async Task<ActionResult> Details(string id)
         {
             RegisterViewModel data = new RegisterViewModel();
-            ViewBag.BranchId = new SelectList(_BranchesRepo.GetList().AsEnumerable(), "BindField", "DisplayField");
-
             usr05users user = _dbMainEntities.usr05users.Where(s => s.usr05userId == id).FirstOrDefault();
             var roleStore = new RoleStore<IdentityRole>(_dbIdentityEntities);
             var roleMngr = new RoleManager<IdentityRole>(roleStore);
@@ -678,7 +633,6 @@ namespace DMS.UI.Controllers
                 var nerole =
                 data = new RegisterViewModel()
                 {
-                    BranchName = user.bra01branches.bra01name,
                     Email = xyz.Email,
                     RegRoles = roleName.ToArray(),
                     EmployeeId = user?.emp01employee == null ? 0 : user.emp01employee.emp01uin,

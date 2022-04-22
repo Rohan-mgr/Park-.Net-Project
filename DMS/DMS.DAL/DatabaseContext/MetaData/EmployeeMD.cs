@@ -81,16 +81,5 @@ namespace DMS.DAL.DatabaseContext.MetaData
         [Display(Name = "UpdatedDateEng")]
         public System.DateTime emp01update_date_eng { get; set; }
 
-        [Display(Name = "Branch")]
-        public virtual bra01branches bra01branches { get; set; }
-
-        [Display(Name = "Department")]
-        public virtual dep01department dep01department { get; set; }
-
-        [Display(Name = "Designation")]
-        public virtual des01designations des01designations { get; set; }
-
-        [Display(Name = "Level")]
-        public virtual lvl01employee_levels lvl01employee_levels { get; set; }
     }
 }

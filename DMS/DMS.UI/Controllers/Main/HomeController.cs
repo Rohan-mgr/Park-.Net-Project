@@ -23,13 +23,11 @@ namespace DMS.Controllers
     {
         private MainEntities db;
         private SystemInfoForSession _ActiveSession;
-        private IBranchesRepo _BranchesRepo;
 
-        public HomeController(MainEntities _db, IBranchesRepo BranchesRepo)
+        public HomeController(MainEntities _db)
         {
             _ActiveSession = SessionHelper.GetSession();
             db = _db;
-            _BranchesRepo = BranchesRepo;
         }
         SystemInfoForSession systemSession = SessionHelper.GetSession();
 

@@ -43,8 +43,6 @@ namespace DMS.DAL.StaticHelper
         public string[] RoleInfoEnum { get; set; }
         public DateTime SysDateEng => DateTime.Now;
         public string SysDateNep => NepaliCalender.Convert.ToNepali(SysDateEng);
-        [JsonIgnore]
-        public bra01branches bra01branches { get; set; }
         public bool EnableContactLessCard { get; set; }
 
         public override string ToString()

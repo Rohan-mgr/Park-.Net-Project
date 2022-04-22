@@ -22,10 +22,6 @@ namespace DMS.DAL.DatabaseContext
     
         public int emp01uin { get; set; }
         public string emp01code { get; set; }
-        public int emp01des01uin { get; set; }
-        public int emp01dep01uin { get; set; }
-        public int emp01lvl01uin { get; set; }
-        public int emp01bra01uin { get; set; }
         public string emp01name { get; set; }
         public string emp01join_date_nep { get; set; }
         public System.DateTime emp01join_date_eng { get; set; }
@@ -41,10 +37,6 @@ namespace DMS.DAL.DatabaseContext
         public string emp01updated_date_nep { get; set; }
         public System.DateTime emp01update_date_eng { get; set; }
     
-        public virtual bra01branches bra01branches { get; set; }
-        public virtual dep01department dep01department { get; set; }
-        public virtual des01designations des01designations { get; set; }
-        public virtual lvl01employee_levels lvl01employee_levels { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<usr05users> usr05users { get; set; }
     }

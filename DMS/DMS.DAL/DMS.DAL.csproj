@@ -122,23 +122,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseContext\bra01branches.cs">
-      <DependentUpon>MainModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DatabaseContext\cfg01configurations.cs">
       <DependentUpon>MainModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DatabaseContext\DataContext.cs" />
-    <Compile Include="DatabaseContext\dep01department.cs">
-      <DependentUpon>MainModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DatabaseContext\des01designations.cs">
-      <DependentUpon>MainModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DatabaseContext\emp01employee.cs">
-      <DependentUpon>MainModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DatabaseContext\lvl01employee_levels.cs">
       <DependentUpon>MainModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DatabaseContext\MainModel.Context.cs">
@@ -186,11 +174,7 @@
     <Compile Include="Helpers\SessionHelper.cs" />
     <Compile Include="Helpers\StringHelpers.cs" />
     <Compile Include="Helpers\SystemConfigHelpers.cs" />
-    <Compile Include="Interface\IBranchesRepo.cs" />
-    <Compile Include="Interface\IDepartmentRepo.cs" />
-    <Compile Include="Interface\IDesignationRepo.cs" />
     <Compile Include="Interface\IEmployeeRepo.cs" />
-    <Compile Include="Interface\ILevelsRepo.cs" />
     <Compile Include="Interface\IUserRepo.cs" />
     <Compile Include="Migrations\202204161918452_added_required_tables.cs" />
     <Compile Include="Migrations\202204161918452_added_required_tables.Designer.cs">
@@ -215,6 +199,10 @@
     <Compile Include="Migrations\202204220332490_drop_unused_column.cs" />
     <Compile Include="Migrations\202204220332490_drop_unused_column.Designer.cs">
       <DependentUpon>202204220332490_drop_unused_column.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204221603527_dropped_unused_table.cs" />
+    <Compile Include="Migrations\202204221603527_dropped_unused_table.Designer.cs">
+      <DependentUpon>202204221603527_dropped_unused_table.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -243,11 +231,7 @@
     <Compile Include="Repositories\GenericRepo\GenericRepo.cs" />
     <Compile Include="Repositories\GenericRepo\ICFGenericRepo.cs" />
     <Compile Include="Repositories\GenericRepo\IGenericRepo.cs" />
-    <Compile Include="Repositories\MainRepo\BranchesRepo.cs" />
-    <Compile Include="Repositories\MainRepo\DepartmentRepo.cs" />
-    <Compile Include="Repositories\MainRepo\DesignationRepo.cs" />
     <Compile Include="Repositories\MainRepo\EmployeeRepo.cs" />
-    <Compile Include="Repositories\MainRepo\LevelsRepo.cs" />
     <Compile Include="Repositories\MainRepo\UserServiceRepo.cs" />
     <Compile Include="Repositories\Services\ConfigurationServices.cs" />
     <Compile Include="StaticHelper\ImageResizeHelper.cs" />
@@ -313,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204220332490_drop_unused_column.resx">
       <DependentUpon>202204220332490_drop_unused_column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204221603527_dropped_unused_table.resx">
+      <DependentUpon>202204221603527_dropped_unused_table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

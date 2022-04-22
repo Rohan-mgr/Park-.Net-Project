@@ -13,7 +13,6 @@ namespace DMS.DAL
         protected override void Initialize()
         {
             Container.RegisterType<IEmployeeRepo, EmployeeRepo>();
-            Container.RegisterType<IBranchesRepo, BranchesRepo>();
             Container.RegisterType<IUserRepo, UserServiceRepo>();
         }
     }

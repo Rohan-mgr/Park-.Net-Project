@@ -183,7 +183,6 @@ namespace DMS.UI.Controllers
                         IdentityEntities db = new IdentityEntities();
 
                         var User = _dbMainEntities.usr05users
-                        .Include(x => x.bra01branches)
                         .Include(x => x.emp01employee)
                         .SingleOrDefault(x => x.usr05userId == user.Id);
 
@@ -199,12 +198,6 @@ namespace DMS.UI.Controllers
                                 systemSession.EmployeeId = User.usr05emp01uin.Value;
                                 systemSession.EmployeeName = User.emp01employee.emp01name;
                             }
-
-                            systemSession.BranchId = User.usr05bra01uin;
-                            systemSession.BranchName = User.bra01branches.bra01name;
-                            systemSession.bra01branches = User.bra01branches;
-
-
                         }
                         systemSession.UserName = user.UserName;
 

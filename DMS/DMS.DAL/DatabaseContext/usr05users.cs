@@ -15,7 +15,6 @@ namespace DMS.DAL.DatabaseContext
     public partial class usr05users
     {
         public string usr05userId { get; set; }
-        public int usr05bra01uin { get; set; }
         public byte usr05type { get; set; }
         public bool usr05status { get; set; }
         public bool usr05deleted { get; set; }
@@ -27,7 +26,6 @@ namespace DMS.DAL.DatabaseContext
         public bool usr05can_view_all_branch { get; set; }
         public Nullable<bool> isAdmin { get; set; }
     
-        public virtual bra01branches bra01branches { get; set; }
         public virtual emp01employee emp01employee { get; set; }
     }
 }

@@ -1,7 +1,6 @@
 using DMS.DAL.DatabaseContext;
 using DMS.DAL.EntityModels;
 using DMS.DAL.Helpers;
-using DMS.DAL.Interface;
 using DMS.DAL.Interfaces;
 using DMS.DAL.Repositories.GeneralRepo.Implementation;
 using DMS.DAL.Repositories.GeneralRepo.Interfaces;
@@ -90,17 +89,12 @@ namespace DMS
             container.RegisterType<IUserRoleServices, UserRoleServices>();
             container.RegisterType<IControllerActionRepo, ControllerActionRepo>();
             container.RegisterType<AuthHelper, AuthHelper>();
-            container.RegisterType<IBranchesRepo, BranchesRepo>();
             container.RegisterType<IUserRepo, UserServiceRepo>();
             container.RegisterType<IConfigValuesRepo, ConfigValuesRepo>();
             container.RegisterType<IConfigValuesByEnumRepo, ConfigValuesByEnumRepo>();
             container.RegisterType<IApplicationUserRoleRepo, ApplicationUserRoleRepo>();
             container.RegisterType<IUserCodesRepo, UserCodesRepo>();
-            container.RegisterType<IBranchesRepo, BranchesRepo>();
-            container.RegisterType<IDepartmentRepo, DepartmentRepo>();
-            container.RegisterType<IDesignationRepo, DesignationRepo>();
             container.RegisterType<IEmployeeRepo, EmployeeRepo>();
-            container.RegisterType<ILevelsRepo, LevelsRepo>();
             container.RegisterType<IUserRepo, UserServiceRepo>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
 
