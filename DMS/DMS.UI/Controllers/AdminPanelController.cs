@@ -6,11 +6,15 @@ using System.Web.Mvc;
 
 namespace DMS.Controllers
 {
-    [AllowAnonymous]
+    //[AllowAnonymous]
     public class AdminPanelController : Controller
     {
         // GET: AdminPanel
         public ActionResult Index()
+        {
+            return View();
+        }
+        public ActionResult Chart()
         {
             return View();
         }

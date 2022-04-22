@@ -141,6 +141,7 @@
           <Property Name="usr05updated_by" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="usr05emp01uin" Type="int" />
           <Property Name="usr05can_view_all_branch" Type="bit" Nullable="false" />
+          <Property Name="isAdmin" Type="bit" />
         </EntityType>
         <Association Name="FK_emp01employee_bra01branches">
           <End Role="bra01branches" Type="Self.bra01branches" Multiplicity="1" />
@@ -260,14 +261,9 @@
           <EntitySet Name="emp01employee" EntityType="BIT4thSemModel.emp01employee" />
           <EntitySet Name="lvl01employee_levels" EntityType="BIT4thSemModel.lvl01employee_levels" />
           <EntitySet Name="UserCodes" EntityType="BIT4thSemModel.UserCode" />
-          <EntitySet Name="usr05users" EntityType="BIT4thSemModel.usr05users" />
           <AssociationSet Name="FK_emp01employee_bra01branches" Association="BIT4thSemModel.FK_emp01employee_bra01branches">
             <End Role="bra01branches" EntitySet="bra01branches" />
             <End Role="emp01employee" EntitySet="emp01employee" />
-          </AssociationSet>
-          <AssociationSet Name="FK_usr05users_bra01branches" Association="BIT4thSemModel.FK_usr05users_bra01branches">
-            <End Role="bra01branches" EntitySet="bra01branches" />
-            <End Role="usr05users" EntitySet="usr05users" />
           </AssociationSet>
           <AssociationSet Name="FK_emp01employee_dep01department" Association="BIT4thSemModel.FK_emp01employee_dep01department">
             <End Role="dep01department" EntitySet="dep01department" />
@@ -280,6 +276,11 @@
           <AssociationSet Name="FK_emp01employee_lvl01employee_levels" Association="BIT4thSemModel.FK_emp01employee_lvl01employee_levels">
             <End Role="lvl01employee_levels" EntitySet="lvl01employee_levels" />
             <End Role="emp01employee" EntitySet="emp01employee" />
+          </AssociationSet>
+          <EntitySet Name="usr05users" EntityType="BIT4thSemModel.usr05users" />
+          <AssociationSet Name="FK_usr05users_bra01branches" Association="BIT4thSemModel.FK_usr05users_bra01branches">
+            <End Role="bra01branches" EntitySet="bra01branches" />
+            <End Role="usr05users" EntitySet="usr05users" />
           </AssociationSet>
           <AssociationSet Name="FK_usr05users_emp01employee" Association="BIT4thSemModel.FK_usr05users_emp01employee">
             <End Role="emp01employee" EntitySet="emp01employee" />
@@ -417,24 +418,6 @@
           <Property Name="code" Type="Int64" Nullable="false" />
           <Property Name="CodeUsed" Type="Boolean" Nullable="false" />
         </EntityType>
-        <EntityType Name="usr05users">
-          <Key>
-            <PropertyRef Name="usr05userId" />
-          </Key>
-          <Property Name="usr05userId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="usr05bra01uin" Type="Int32" Nullable="false" />
-          <Property Name="usr05type" Type="Byte" Nullable="false" />
-          <Property Name="usr05status" Type="Boolean" Nullable="false" />
-          <Property Name="usr05deleted" Type="Boolean" Nullable="false" />
-          <Property Name="usr05created_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="usr05created_by" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="usr05updated_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="usr05updated_by" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="usr05emp01uin" Type="Int32" />
-          <Property Name="usr05can_view_all_branch" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="bra01branches" Relationship="BIT4thSemModel.FK_usr05users_bra01branches" FromRole="usr05users" ToRole="bra01branches" />
-          <NavigationProperty Name="emp01employee" Relationship="BIT4thSemModel.FK_usr05users_emp01employee" FromRole="usr05users" ToRole="emp01employee" />
-        </EntityType>
         <Association Name="FK_emp01employee_bra01branches">
           <End Type="BIT4thSemModel.bra01branches" Role="bra01branches" Multiplicity="1" />
           <End Type="BIT4thSemModel.emp01employee" Role="emp01employee" Multiplicity="*" />
@@ -444,18 +427,6 @@
             </Principal>
             <Dependent Role="emp01employee">
               <PropertyRef Name="emp01bra01uin" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_usr05users_bra01branches">
-          <End Type="BIT4thSemModel.bra01branches" Role="bra01branches" Multiplicity="1" />
-          <End Type="BIT4thSemModel.usr05users" Role="usr05users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="bra01branches">
-              <PropertyRef Name="bra01uin" />
-            </Principal>
-            <Dependent Role="usr05users">
-              <PropertyRef Name="usr05bra01uin" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -492,6 +463,37 @@
             </Principal>
             <Dependent Role="emp01employee">
               <PropertyRef Name="emp01lvl01uin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="usr05users">
+          <Key>
+            <PropertyRef Name="usr05userId" />
+          </Key>
+          <Property Name="usr05userId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="usr05bra01uin" Type="Int32" Nullable="false" />
+          <Property Name="usr05type" Type="Byte" Nullable="false" />
+          <Property Name="usr05status" Type="Boolean" Nullable="false" />
+          <Property Name="usr05deleted" Type="Boolean" Nullable="false" />
+          <Property Name="usr05created_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usr05created_by" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="usr05updated_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usr05updated_by" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="usr05emp01uin" Type="Int32" />
+          <Property Name="usr05can_view_all_branch" Type="Boolean" Nullable="false" />
+          <Property Name="isAdmin" Type="Boolean" />
+          <NavigationProperty Name="bra01branches" Relationship="BIT4thSemModel.FK_usr05users_bra01branches" FromRole="usr05users" ToRole="bra01branches" />
+          <NavigationProperty Name="emp01employee" Relationship="BIT4thSemModel.FK_usr05users_emp01employee" FromRole="usr05users" ToRole="emp01employee" />
+        </EntityType>
+        <Association Name="FK_usr05users_bra01branches">
+          <End Type="BIT4thSemModel.bra01branches" Role="bra01branches" Multiplicity="1" />
+          <End Type="BIT4thSemModel.usr05users" Role="usr05users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bra01branches">
+              <PropertyRef Name="bra01uin" />
+            </Principal>
+            <Dependent Role="usr05users">
+              <PropertyRef Name="usr05bra01uin" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -643,6 +645,7 @@
           <EntitySetMapping Name="usr05users">
             <EntityTypeMapping TypeName="BIT4thSemModel.usr05users">
               <MappingFragment StoreEntitySet="usr05users">
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
                 <ScalarProperty Name="usr05can_view_all_branch" ColumnName="usr05can_view_all_branch" />
                 <ScalarProperty Name="usr05emp01uin" ColumnName="usr05emp01uin" />
                 <ScalarProperty Name="usr05updated_by" ColumnName="usr05updated_by" />

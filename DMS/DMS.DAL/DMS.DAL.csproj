@@ -208,6 +208,14 @@
     <Compile Include="Migrations\202204210227241_added_new_table.Designer.cs">
       <DependentUpon>202204210227241_added_new_table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204220311053_added new field.cs" />
+    <Compile Include="Migrations\202204220311053_added new field.Designer.cs">
+      <DependentUpon>202204220311053_added new field.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204220332490_drop_unused_column.cs" />
+    <Compile Include="Migrations\202204220332490_drop_unused_column.Designer.cs">
+      <DependentUpon>202204220332490_drop_unused_column.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -299,6 +307,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204210227241_added_new_table.resx">
       <DependentUpon>202204210227241_added_new_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204220311053_added new field.resx">
+      <DependentUpon>202204220311053_added new field.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204220332490_drop_unused_column.resx">
+      <DependentUpon>202204220332490_drop_unused_column.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
