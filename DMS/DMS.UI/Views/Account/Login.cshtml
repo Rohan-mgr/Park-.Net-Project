@@ -5,7 +5,17 @@
                 ViewBag.Title = "Login";
                 Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
-
+<style>
+    body {
+        background-color: black;
+    }
+    h3 {
+        text-transform: uppercase;
+        color: #1769FF;
+        font-weight: 700;
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -17,13 +27,13 @@
             <div class="row padBox">
                 <div class="col-sm-6">
                     <div class="thumbnail">
-                        <img width="200px" src="@Url.Content("~/" + ViewHelper.TenantFile("Content/Images/logo.jpg"))" class="img-responsive" />
+                        <img width="250" src="~/Content/assets/images/car rent logo.jpg" class="img-responsive" />
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="">
                         <h3 align="center">
-                            Main Project
+                                <span class="w3yellow">C<i class="fab fa-asymmetrik"></i>r </span>Transko
                         </h3>
                         <form class="form-login" action="index.html">
                             @Html.Raw(FlashBag.showMessage())
@@ -61,7 +71,7 @@
                         </form>
                         <!-- start: COPYRIGHT -->
                         <div class="copyright" style="color:black;">
-                            Copyright &copy; @DateTime.Now.Year @(ViewHelper.LoginCompanyName). All rights reserved.
+                            Copyright &copy; @DateTime.Now.Year Park Authorities. All rights reserved.
                         </div>
                         <!-- end: COPYRIGHT -->
                     </div>
