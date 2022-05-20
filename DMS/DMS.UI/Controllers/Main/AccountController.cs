@@ -142,6 +142,10 @@ namespace DMS.UI.Controllers
                 {
                     throw new Exception("Invalid User Name.");
                 }
+                var User = _dbMainEntities.usr05users
+                       .Include(x => x.emp01employee)
+                       .SingleOrDefault(x => x.usr05userId == user.Id);
+
                 if (user != null)
                 {
                     if (user.IsDelete == true)
@@ -182,10 +186,7 @@ namespace DMS.UI.Controllers
                         }
                         IdentityEntities db = new IdentityEntities();
 
-                        var User = _dbMainEntities.usr05users
-                        .Include(x => x.emp01employee)
-                        .SingleOrDefault(x => x.usr05userId == user.Id);
-
+                       
                         if (User != null)
                         {
                             if (User.usr05deleted == true)
@@ -205,6 +206,7 @@ namespace DMS.UI.Controllers
                         {
                             //todo: log exception
                         }
+                        
                     }
                     else
                     {
@@ -220,6 +222,10 @@ namespace DMS.UI.Controllers
                 if (model.returnUrl != null)
                 {
                     return RedirectToLocal(model.returnUrl);
+                }
+                if(User.isAdmin==true)
+                {
+                    return RedirectToAction("Index", "Admin");
                 }
                 return RedirectToAction("Dashboard", "Home");
 
