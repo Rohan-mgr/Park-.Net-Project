@@ -103,6 +103,10 @@ namespace DMS.Models
         //public string DisplayField => $"{bra01name} [ {bra01code} ]";
         [Display(Name = "Status")]
         public bool status { get; set; }
+        
+        [Display(Name = "IsAdmin")]
+        public bool IsAdmin { get; set; }
+
     }
 
     public class RegisterEditModel

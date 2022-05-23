@@ -5,6 +5,7 @@ using DMS.DAL.Repositories.MainRepo;
 using DMS.DAL.StaticHelper;
 using DMS.Services.General.Interface;
 using DMS.ViewModels;
+using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Net;
 
 namespace DMS.Controllers
 {
@@ -41,6 +43,13 @@ namespace DMS.Controllers
         {
             return View();
         }
+        //public ActionResult LogOut()
+        //{
+        //    var systemSession = (SystemInfoForSession)Session["SystemSession"];
+
+        //   AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+        //    return RedirectToAction("Index");
+        //}
 
         public ActionResult About()
         {
