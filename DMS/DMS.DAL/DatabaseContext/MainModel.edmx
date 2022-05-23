@@ -40,6 +40,14 @@
           <Property Name="emp01updated_date_nep" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="emp01update_date_eng" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="gallery">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="photo_path" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="photo_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
         <EntityType Name="UserCodes">
           <Key>
             <PropertyRef Name="id" />
@@ -84,6 +92,7 @@
         <EntityContainer Name="BIT4thSemModelStoreContainer">
           <EntitySet Name="cfg01configurations" EntityType="Self.cfg01configurations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="emp01employee" EntityType="Self.emp01employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gallery" EntityType="Self.gallery" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserCodes" EntityType="Self.UserCodes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usr05users" EntityType="Self.usr05users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_usr05users_emp01employee" Association="Self.FK_usr05users_emp01employee">
@@ -104,6 +113,7 @@
             <End Role="emp01employee" EntitySet="emp01employee" />
             <End Role="usr05users" EntitySet="usr05users" />
           </AssociationSet>
+          <EntitySet Name="galleries" EntityType="BIT4thSemModel.gallery" />
         </EntityContainer>
         <EntityType Name="cfg01configurations">
           <Key>
@@ -183,6 +193,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="gallery">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="photo_path" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="photo_name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -253,6 +271,15 @@
                 <ScalarProperty Name="usr05status" ColumnName="usr05status" />
                 <ScalarProperty Name="usr05type" ColumnName="usr05type" />
                 <ScalarProperty Name="usr05userId" ColumnName="usr05userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="galleries">
+            <EntityTypeMapping TypeName="BIT4thSemModel.gallery">
+              <MappingFragment StoreEntitySet="gallery">
+                <ScalarProperty Name="photo_name" ColumnName="photo_name" />
+                <ScalarProperty Name="photo_path" ColumnName="photo_path" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

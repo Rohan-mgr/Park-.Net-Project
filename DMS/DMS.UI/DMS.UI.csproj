@@ -304,6 +304,7 @@
     <Compile Include="App_Start\UserManagement.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminPanelController.cs" />
+    <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\Main\AccountController.cs" />
     <Compile Include="Controllers\Base\BaseControllerV1Controller.cs" />
     <Compile Include="Controllers\Base\_BaseAuthenticatedController.cs" />
@@ -1736,6 +1737,8 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\AdminPanel\Index.cshtml" />
     <Content Include="Views\AdminPanel\Chart.cshtml" />
+    <Content Include="Views\Gallery\Index.cshtml" />
+    <Content Include="Views\Gallery\AddNew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

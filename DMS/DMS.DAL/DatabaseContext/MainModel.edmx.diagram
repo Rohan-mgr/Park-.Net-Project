@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="BIT4thSemModel.UserCode" PointX="5.75" PointY="0.75" Width="1.5" />
         <EntityTypeShape EntityType="BIT4thSemModel.usr05users" PointX="3" PointY="1.5" Width="1.5" />
         <AssociationConnector Association="BIT4thSemModel.FK_usr05users_emp01employee" />
+        <EntityTypeShape EntityType="BIT4thSemModel.gallery" Width="1.5" PointX="5.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
