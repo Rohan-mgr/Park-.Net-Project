@@ -25,13 +25,19 @@ namespace DMS.Controllers
     {
         private MainEntities db;
         private SystemInfoForSession _ActiveSession;
+        SystemInfoForSession systemSession = SessionHelper.GetSession();
 
         public HomeController(MainEntities _db)
         {
             _ActiveSession = SessionHelper.GetSession();
             db = _db;
         }
-        SystemInfoForSession systemSession = SessionHelper.GetSession();
+
+        public ActionResult Gallery()
+        {
+            List<gallery> data = db.galleries.ToList();
+            return View(data);
+        }
 
         public ActionResult AccessDeniedPage()
         {

@@ -34,7 +34,7 @@ namespace DMS.Controllers
             }
             SelectedFile.SaveAs(new_path);
             gallery gallery = new gallery();
-            gallery.photo_path = path;
+            gallery.photo_path = "~/Uploads";
             gallery.photo_name = filename;
             db.galleries.Add(gallery);
             db.SaveChanges();

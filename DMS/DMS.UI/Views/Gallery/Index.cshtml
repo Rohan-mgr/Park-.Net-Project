@@ -7,7 +7,7 @@
     int sn = 0;
 }
 
-
+<a href="@Url.Action("AddNew")" class="btn btn-info">Add New</a>
 <table class="table table-bordered">
     <tr>
         <td>SN</td>
@@ -15,11 +15,10 @@
     </tr>
     @foreach (var data in Model)
     {
-        var pic = (data.photo_path + "/" + data.photo_name);
         <tr>
             <td>@(++sn)</td>
             <td>
-                <img src="@pic" height="200" width="200" />
+                <img src="@Url.Content(data.photo_path + "/" + data.photo_name)" height="200" width="200" />
             </td>
         </tr>
 
