@@ -29,6 +29,7 @@ using System.Web.Mvc;
 
 namespace DMS.UI.Controllers
 {
+    [AllowAnonymous]
     [AllowTopUsers]
     [CustomAuthentication]
     public class SystemUsersController : AccountController

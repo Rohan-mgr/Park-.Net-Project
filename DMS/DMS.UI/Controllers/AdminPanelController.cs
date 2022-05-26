@@ -14,6 +14,10 @@ namespace DMS.Controllers
         {
             return View();
         }
+        public ActionResult index2()
+        {
+            return View();
+        }
         public ActionResult Chart()
         {
             return View();

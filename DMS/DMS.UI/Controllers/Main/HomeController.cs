@@ -36,7 +36,7 @@ namespace DMS.Controllers
         public ActionResult Gallery()
         {
             List<gallery> data = db.galleries.ToList();
-            return View(data);
+            return PartialView(data);
         }
 
         public ActionResult AccessDeniedPage()
