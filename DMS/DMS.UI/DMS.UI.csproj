@@ -1735,7 +1735,6 @@
     <Content Include="Views\SystemUsers\RegisterUserEmployee.cshtml" />
     <Content Include="Views\Shared\_AdminView.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
-    <Content Include="Views\AdminPanel\Index.cshtml" />
     <Content Include="Views\AdminPanel\Chart.cshtml" />
     <Content Include="Views\Gallery\Index.cshtml" />
     <Content Include="Views\Gallery\AddNew.cshtml" />
