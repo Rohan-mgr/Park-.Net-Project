@@ -319,6 +319,8 @@
     <Compile Include="Controllers\MenuRoleUserAdmin\MenuController.cs" />
     <Compile Include="Controllers\MenuRoleUserAdmin\UserRoleController.cs" />
     <Compile Include="Controllers\Main\SystemUsersContoller.cs" />
+    <Compile Include="Controllers\usermessageController.cs" />
+    <Compile Include="Controllers\_AdminLayoutController.cs" />
     <Compile Include="CustomAttributes\AllowTopUsersAttribute.cs" />
     <Compile Include="CustomAttributes\HangFireAuthorizationFilter.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
@@ -1740,6 +1742,8 @@
     <Content Include="Views\Gallery\AddNew.cshtml" />
     <Content Include="Views\Home\Gallery.cshtml" />
     <Content Include="Views\AdminPanel\index2.cshtml" />
+    <Content Include="Views\Home\usermessage.cshtml" />
+    <Content Include="Views\usermessage\msgcreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1749,6 +1753,7 @@
     <Folder Include="private\Import\" />
     <Folder Include="Uploads\" />
     <Folder Include="Views\Menu\EditorTemplates\" />
+    <Folder Include="Views\_AdminLayout\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

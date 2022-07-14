@@ -23,7 +23,9 @@ namespace DMS.Controllers
     [AllowAnonymous]
     public class HomeController : Controller
     {
-        private MainEntities db;
+        //MainEntities db= new MainEntities();
+        MainEntities db = new MainEntities();
+
         private SystemInfoForSession _ActiveSession;
         SystemInfoForSession systemSession = SessionHelper.GetSession();
 
@@ -44,10 +46,16 @@ namespace DMS.Controllers
             return View();
         }
 
+        public ActionResult usermessage()
+        {
+            //List<gallery> data = db.galleries.ToList();
+            return View();
+        }
 
         public ActionResult Index()
         {
-            return View();
+            List<gallery> data = db.galleries.ToList();
+            return View(data);
         }
         //public ActionResult LogOut()
         //{
@@ -74,5 +82,12 @@ namespace DMS.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public ActionResult CreateMessage(User_Message user)
+        {
+            db.User_Message.Add(user);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

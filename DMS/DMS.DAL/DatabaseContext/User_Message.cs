@@ -12,11 +12,10 @@ namespace DMS.DAL.DatabaseContext
     using System;
     using System.Collections.Generic;
     
-    public partial class gallery
+    public partial class User_Message
     {
-        public int id { get; set; }
-        public string photo_path { get; set; }
-        public string photo_name { get; set; }
-        public string car_name { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Message { get; set; }
     }
 }

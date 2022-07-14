@@ -27,6 +27,7 @@ namespace DMS.DAL.DatabaseContext
     
         public virtual DbSet<cfg01configurations> cfg01configurations { get; set; }
         public virtual DbSet<emp01employee> emp01employee { get; set; }
+        public virtual DbSet<User_Message> User_Message { get; set; }
         public virtual DbSet<UserCode> UserCodes { get; set; }
         public virtual DbSet<usr05users> usr05users { get; set; }
         public virtual DbSet<gallery> galleries { get; set; }

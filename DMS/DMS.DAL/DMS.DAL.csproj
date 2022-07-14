@@ -152,6 +152,9 @@
     <Compile Include="DatabaseContext\UserCode.cs">
       <DependentUpon>MainModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseContext\User_Message.cs">
+      <DependentUpon>MainModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseContext\usr05users.cs">
       <DependentUpon>MainModel.tt</DependentUpon>
     </Compile>

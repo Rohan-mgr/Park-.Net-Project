@@ -23,7 +23,8 @@ namespace DMS.Controllers
             return View();
         }
 
-        public ActionResult SaveImage(HttpPostedFileBase SelectedFile)
+        [HttpPost]
+        public ActionResult SaveImage(string carname, HttpPostedFileBase SelectedFile)
         {
             string path = Server.MapPath("~/Uploads");
             string filename = SelectedFile.FileName;
@@ -36,6 +37,7 @@ namespace DMS.Controllers
             gallery gallery = new gallery();
             gallery.photo_path = "~/Uploads";
             gallery.photo_name = filename;
+            gallery.car_name = carname; 
             db.galleries.Add(gallery);
             db.SaveChanges();
 
