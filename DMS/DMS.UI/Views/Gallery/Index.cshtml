@@ -12,15 +12,23 @@
     <tr>
         <td>SN</td>
         <td>Uploaded File</td>
+        <td>Action</td>
     </tr>
     @foreach (var data in Model)
     {
+        //if(data.status == false)
+        // {
+
         <tr>
             <td>@(++sn)</td>
             <td>
                 <img src="@Url.Content(data.photo_path + "/" + data.photo_name)" height="200" width="200" />
             </td>
+            <td>@Html.ActionLink("Deliver", "Deliver", new { id = data.id }) | 
+                @Html.ActionLink("Delete", "Delete", new {id = data.id})
+            </td>
         </tr>
+         @*}*@
 
     }
 </table>

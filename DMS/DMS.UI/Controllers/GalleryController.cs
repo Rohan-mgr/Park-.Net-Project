@@ -22,9 +22,23 @@ namespace DMS.Controllers
         {
             return View();
         }
+        public ActionResult Deliver(int id)
+        {
+            gallery data = db.galleries.Find(id);
+            data.status = true;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult Delete(int id)
+        {
+            gallery data = db.galleries.Find(id);
+            db.galleries.Remove(data);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         [HttpPost]
-        public ActionResult SaveImage(string carname, HttpPostedFileBase SelectedFile)
+        public ActionResult SaveImage(string carname, float price, HttpPostedFileBase SelectedFile)
         {
             string path = Server.MapPath("~/Uploads");
             string filename = SelectedFile.FileName;
@@ -37,7 +51,8 @@ namespace DMS.Controllers
             gallery gallery = new gallery();
             gallery.photo_path = "~/Uploads";
             gallery.photo_name = filename;
-            gallery.car_name = carname; 
+            gallery.car_name = carname;
+            gallery.ppd = price;
             db.galleries.Add(gallery);
             db.SaveChanges();
 

@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="BIT4thSemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Car_Rented">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="c_name" Type="nchar" MaxLength="20" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="c_choice" Type="nchar" MaxLength="20" />
+          <Property Name="i_date" Type="date" />
+          <Property Name="r_date" Type="date" />
+          <Property Name="t_amount" Type="float" />
+        </EntityType>
         <EntityType Name="cfg01configurations">
           <Key>
             <PropertyRef Name="cfg01module" />
@@ -48,6 +59,8 @@
           <Property Name="photo_path" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="photo_name" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="car_name" Type="nchar" MaxLength="20" />
+          <Property Name="status" Type="bit" Nullable="false" />
+          <Property Name="ppd" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="User_Message">
           <Key>
@@ -99,6 +112,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="BIT4thSemModelStoreContainer">
+          <EntitySet Name="Car_Rented" EntityType="Self.Car_Rented" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cfg01configurations" EntityType="Self.cfg01configurations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="emp01employee" EntityType="Self.emp01employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="gallery" EntityType="Self.gallery" Schema="dbo" store:Type="Tables" />
@@ -124,6 +138,7 @@
             <End Role="emp01employee" EntitySet="emp01employee" />
             <End Role="usr05users" EntitySet="usr05users" />
           </AssociationSet>
+          <EntitySet Name="Car_Rented" EntityType="BIT4thSemModel.Car_Rented" />
           <EntitySet Name="galleries" EntityType="BIT4thSemModel.gallery" />
         </EntityContainer>
         <EntityType Name="cfg01configurations">
@@ -212,6 +227,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Car_Rented">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="c_name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="c_choice" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="i_date" Type="DateTime" Precision="0" />
+          <Property Name="r_date" Type="DateTime" Precision="0" />
+          <Property Name="t_amount" Type="Double" />
+        </EntityType>
         <EntityType Name="gallery">
           <Key>
             <PropertyRef Name="id" />
@@ -220,6 +246,8 @@
           <Property Name="photo_path" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="photo_name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="car_name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="status" Type="Boolean" Nullable="false" />
+          <Property Name="ppd" Type="Double" Nullable="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -303,9 +331,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Car_Rented">
+            <EntityTypeMapping TypeName="BIT4thSemModel.Car_Rented">
+              <MappingFragment StoreEntitySet="Car_Rented">
+                <ScalarProperty Name="t_amount" ColumnName="t_amount" />
+                <ScalarProperty Name="r_date" ColumnName="r_date" />
+                <ScalarProperty Name="i_date" ColumnName="i_date" />
+                <ScalarProperty Name="c_choice" ColumnName="c_choice" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="c_name" ColumnName="c_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="galleries">
             <EntityTypeMapping TypeName="BIT4thSemModel.gallery">
               <MappingFragment StoreEntitySet="gallery">
+                <ScalarProperty Name="ppd" ColumnName="ppd" />
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="car_name" ColumnName="car_name" />
                 <ScalarProperty Name="photo_name" ColumnName="photo_name" />
                 <ScalarProperty Name="photo_path" ColumnName="photo_path" />

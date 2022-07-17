@@ -1,6 +1,8 @@
-﻿
+﻿@*@model List<DMS.DAL.DatabaseContext.Car_Rented>*@
+
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    
 }
 
 
@@ -41,8 +43,8 @@
             <div class="row">
                 <div class="col-md-6 col-lg-3">
                     <div class="statistic__item">
-                        <h2 class="number">10,368</h2>
-                        <span class="desc">members online</span>
+                        <h2 class="number">@Session["rentCount"]</h2>
+                        <span class="desc">Total Car Rented</span>
                         <div class="icon">
                             <i class="zmdi zmdi-account-o"></i>
                         </div>
@@ -434,16 +436,15 @@
     </div>
 </section>
 
-<section>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="copyright">
-                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+@*<section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="copyright">
+                        <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>*@
 <!-- END PAGE CONTAINER-->
-   

@@ -89,5 +89,18 @@ namespace DMS.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult AllMessages()
+        {
+            List<User_Message> messages = db.User_Message.ToList();
+            return PartialView(messages);
+        }
+        [HttpPost]
+        public ActionResult RentCar(Car_Rented car)
+        {
+            db.Car_Rented.Add(car);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

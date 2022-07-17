@@ -1,0 +1,19 @@
+﻿@model List<DMS.DAL.DatabaseContext.User_Message>
+<div class="email-dropdown js-dropdown">
+
+    @foreach (var data in Model)
+    {
+        <div class="email__item">
+            <div class="image img-cir img-40">
+                <img src="~/Content/park/adminAssets/images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
+            </div>
+            <div class="content">
+                <p>@data.Name</p>
+                <p>@data.Message</p>
+            </div>
+        </div>
+    }
+    <div class="email__footer">
+        <a href="#">See all emails</a>
+    </div>
+</div>

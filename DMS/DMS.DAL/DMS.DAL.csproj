@@ -122,6 +122,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseContext\Car_Rented.cs">
+      <DependentUpon>MainModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseContext\cfg01configurations.cs">
       <DependentUpon>MainModel.tt</DependentUpon>
     </Compile>

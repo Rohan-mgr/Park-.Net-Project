@@ -12,13 +12,13 @@ namespace DMS.DAL.DatabaseContext
     using System;
     using System.Collections.Generic;
     
-    public partial class gallery
+    public partial class Car_Rented
     {
+        public string c_name { get; set; }
         public int id { get; set; }
-        public string photo_path { get; set; }
-        public string photo_name { get; set; }
-        public string car_name { get; set; }
-        public bool status { get; set; }
-        public double ppd { get; set; }
+        public string c_choice { get; set; }
+        public Nullable<System.DateTime> i_date { get; set; }
+        public Nullable<System.DateTime> r_date { get; set; }
+        public Nullable<double> t_amount { get; set; }
     }
 }

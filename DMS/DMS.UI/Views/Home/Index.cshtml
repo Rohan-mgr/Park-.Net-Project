@@ -1,6 +1,18 @@
 ﻿@model List<DMS.DAL.DatabaseContext.gallery>
 
 
+<script>
+    function calculateAmount(e) {
+
+        let rdate = document.getElementById("r_date").value;
+        let idate = document.getElementById("i_date").value;
+        
+        let tamount = document.getElementById("t_amount");
+        let tmm = (new Date(rdate) - new Date(idate)) / 86400000;
+        tamount.value = tmm * (+e.target.value);
+    }
+</script>
+
 <div class="w3l-main-slider position-relative" id="home">
     <div class="w3l-bannerhny-content">
         <div class="container">
@@ -13,28 +25,51 @@
                 </h3>
                 <div class="banner-form-w3">
                     <!--/Request-a-call-form -->
-                    <form action="" method="post">
+                    @*<form action="" method="post">*@
+                    @*<form action="RentCar">*@
+                    @using (Html.BeginForm("RentCar", null, FormMethod.Post))
+                    {
                         <div class="form-style-w3ls">
                             <div class="form-gd">
                                 <label for="input_from">Name</label>
-                                <input type="text" name="Name" placeholder="Enter Name" required="required">
+                                <input type="text" name="c_name" id="c_name" placeholder="Enter Name" required="required">
+                            </div>
+
+                            <div class="form-gd">
+                                <label for="input_from">Issued Date</label>
+                                <input type="date" name="i_date" id="i_date" placeholder="Issue Date" required="required">
+                            </div>
+                            <div class="form-gd">
+                                <label for="input_from">Return Date</label>
+                                <input type="date" name="r_date" id="r_date" placeholder="Return Date" required="required">
                             </div>
                             <div class="form-gd">
                                 <label for="input_from">Select Your Car</label>
                                 @*<input type="text" name="Name" placeholder="Select a Car" required="required">*@
-                                <select>
-                                    @foreach (var data in Model)
+                                <select name="c_choice" onchange="calculateAmount(event)">
+                                    @*@foreach (var data in Model)
+                                        {
+                                            <option value="@data.car_name">@data.car_name</option>
+                                        }*@
+
+                                    @for (int i = 0; i < Model.Count; i++)
                                     {
-                                        <option>@data.car_name</option>
+                                        <option value="@Model[i].ppd">@Model[i].car_name &nbsp; &nbsp;&nbsp;&nbsp; Rs @Model[i].ppd/day</option>
                                     }
                                 </select>
                             </div>
                             <div class="form-gd">
+                                <label for="input_from">Total Amount</label>
+                                <input type="number" name="t_amount" id="t_amount" placeholder="Total Amount" required="required">
+                            </div>
+                            <div class="form-gd">
                                 <label for="input_from">Submit</label>
                                 <button class="btn btn-style btn-primary"> Submit</button>
+                                @*<input type="submit" />*@
                             </div>
                         </div>
-                    </form>
+                        @*</form>*@
+                    }
                     <div class="form-footer mt-3">
                         <span class="info">
                             <b>

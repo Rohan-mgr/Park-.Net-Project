@@ -14,20 +14,26 @@ namespace DMS.Controllers
         MainEntities db = new MainEntities();
         public ActionResult Index()
         {
+            
             return View();
         }
         public ActionResult index2()
         {
-
-            return View();
-        }
+            List<User_Message> data = db.User_Message.ToList();
+            Session["count"] = db.User_Message.Count();
+            //List<Car_Rented> rentCar = db.Car_Rented.ToList();
+            Session["rentCount"] = db.Car_Rented.Count();
+            return View(data);
+        }   
         public ActionResult Chart()
         {
-            return View();
+            List<Car_Rented> data = db.Car_Rented.ToList();
+            return View(data);
         }
         public ActionResult Gallery()
         {
             return View();
         }
+
     }
 }

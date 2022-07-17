@@ -30,6 +30,7 @@ namespace DMS.DAL.DatabaseContext
         public virtual DbSet<User_Message> User_Message { get; set; }
         public virtual DbSet<UserCode> UserCodes { get; set; }
         public virtual DbSet<usr05users> usr05users { get; set; }
+        public virtual DbSet<Car_Rented> Car_Rented { get; set; }
         public virtual DbSet<gallery> galleries { get; set; }
     }
 }
