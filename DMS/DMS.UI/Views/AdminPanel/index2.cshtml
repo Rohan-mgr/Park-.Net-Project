@@ -8,7 +8,7 @@
 
 
 
-<section class="au-breadcrumb m-t-75">
+<!--<section class="au-breadcrumb m-t-75">
     <div class="section__content section__content--p30">
         <div class="container-fluid">
             <div class="row">
@@ -25,16 +25,16 @@
                                 </li>
                                 <li class="list-inline-item">Dashboard</li>
                             </ul>
-                        </div>
-                        <button class="au-btn au-btn-icon au-btn--green">
+                        </div>-->
+                        @*<button class="au-btn au-btn-icon au-btn--green">
                             <i class="zmdi zmdi-plus"></i>add item
-                        </button>
-                    </div>
+                        </button>*@
+                    <!--</div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</section>-->
 <!-- END BREADCRUMB-->
 <!-- STATISTIC-->
 <section class="statistic">
@@ -52,8 +52,8 @@
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="statistic__item">
-                        <h2 class="number">388,688</h2>
-                        <span class="desc">items sold</span>
+                        <h2 class="number">@Session["rentCount"]</h2>
+                        <span class="desc">Total Clients</span>
                         <div class="icon">
                             <i class="zmdi zmdi-shopping-cart"></i>
                         </div>
@@ -61,8 +61,8 @@
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="statistic__item">
-                        <h2 class="number">1,086</h2>
-                        <span class="desc">this week</span>
+                        <h2 class="number">@Session["netsum"]</h2>
+                        <span class="desc">Net Profit</span>
                         <div class="icon">
                             <i class="zmdi zmdi-calendar-note"></i>
                         </div>
@@ -70,8 +70,8 @@
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="statistic__item">
-                        <h2 class="number">$1,060,386</h2>
-                        <span class="desc">total earnings</span>
+                        <h2 class="number">@Session["sum"]</h2>
+                        <span class="desc">Total Profit</span>
                         <div class="icon">
                             <i class="zmdi zmdi-money"></i>
                         </div>
@@ -179,7 +179,7 @@
             <div class="row">
                 <div class="col-xl-6">
                     <!-- USER DATA-->
-                    <div class="user-data m-b-40">
+@*<div class="user-data m-b-40">
                         <h3 class="title-3 m-b-30">
                             <i class="zmdi zmdi-account-calendar"></i>user data
                         </h3>
@@ -360,12 +360,12 @@
                         <div class="user-data__footer">
                             <button class="au-btn au-btn-load">load more</button>
                         </div>
-                    </div>
-                    <!-- END USER DATA-->
+                    </div>*@
+                    <!-- END USER DATA-->                    
                 </div>
                 <div class="col-xl-6">
                     <!-- MAP DATA-->
-                    <div class="map-data m-b-40">
+                    @*<div class="map-data m-b-40">
                         <h3 class="title-3 m-b-30">
                             <i class="zmdi zmdi-map"></i>map data
                         </h3>
@@ -428,7 +428,7 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                     <!-- END MAP DATA-->
                 </div>
             </div>

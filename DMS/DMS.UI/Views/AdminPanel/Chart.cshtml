@@ -5,6 +5,7 @@
     int sn = 0;
 }
 
+<h3 style="text-align: center; color: blue;">Customer Details</h3>
 <table class="table table-bordered">
     <tr>
         <td>SN</td>
@@ -13,6 +14,7 @@
         <td>Issued Date</td>
         <td>Return Date</td>
         <td>Total cost</td>
+        <td>Action</td>
     </tr>
     @foreach (var data in Model)
     {
@@ -31,6 +33,7 @@
         @data.r_date
     </td>
     <td>@data.t_amount</td>
+    <td>@Html.ActionLink("Delete", "Delete", new { id = data.id })</td>
 </tr>
 
     }
