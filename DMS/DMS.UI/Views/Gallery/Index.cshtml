@@ -24,7 +24,7 @@
             <td>
                 <img src="@Url.Content(data.photo_path + "/" + data.photo_name)" height="200" width="200" />
             </td>
-            <td>@Html.ActionLink("Deliver", "Deliver", new { id = data.id }) | 
+            <td>
                 @Html.ActionLink("Delete", "Delete", new {id = data.id})
             </td>
         </tr>

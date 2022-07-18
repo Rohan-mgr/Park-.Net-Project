@@ -22,13 +22,7 @@ namespace DMS.Controllers
         {
             return View();
         }
-        public ActionResult Deliver(int id)
-        {
-            gallery data = db.galleries.Find(id);
-            data.status = true;
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+
         public ActionResult Delete(int id)
         {
             gallery data = db.galleries.Find(id);

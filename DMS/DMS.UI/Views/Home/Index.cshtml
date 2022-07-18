@@ -1,6 +1,10 @@
 ﻿@model List<DMS.DAL.DatabaseContext.gallery>
 
-
+<style>
+    sup{
+        color: red;
+    }
+</style>
 <script>
     function calculateAmount(e) {
 
@@ -676,7 +680,7 @@
                     <div class="testimonial-content">
                         <div class="testimonial">
                             <div class="test-img">
-                                <img src="~/Content/park/assets/images/team1.jpg" class="img-fluid" alt="client-img">
+                                <img src="~/Content/park/assets/images/team3.jpg" class="img-fluid" alt="client-img">
                             </div>
                             <div class="testi-des">
                                 <i class="fas fa-quote-left"></i>
@@ -854,15 +858,18 @@
                 {
                     <div class="row">
                         <div class="col form-group">
+                            <label>Name<sup>*</sup>:</label>
                             <input type="text" class="form-control" name="Name" id="w3lName" placeholder="Name" required="">
                         </div>
-                        <div class="col form-group">
+                    </div>
+                        <div class="col form-group" style="margin: 20px 0;">
+                            <label>E-mail<sup>*</sup>:</label>
                             <input type="email" class="form-control" name="Email" id="w3lSender" placeholder="Email" required="">
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="Message" id="w3lName" placeholder="Message" required="">
+                    <div class="form-group" style="margin: 20px 0;">
+                        <label>Your Message<sup>*</sup>: </label>
+                        <textarea style="height: 197px;" class="form-control" name="Message" id="w3lName" placeholder="Message" required="" ></textarea>
                     </div>
                     <div class="w3lhny-submit text-right">
                         <button type="submit" class="btn btn-primary btn-style ">Send Message</button>
